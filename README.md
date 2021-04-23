@@ -4,7 +4,7 @@ _this project is a work in progress and does not quite function yet_
 
 this project aims to implement an RSS gateway for twitter. the MVP should allow you to get a twitter user's tweets as an RSS/atom feed.
 
-some RSS providers (inoreader, of which I am a paid user) allow following a twitter user as a feed, but I created this project for two reasons:
+some RSS providers (inoreader, of which I am a paid user) allow following a twitter user as a feed, but I created this project for the following reasons:
  - to allow me to filter replies out of the feed
  - to create a more concise article body
  - experiment with using react to render RSS/generic XML rather than HTML (see [renderToXml.tsx](functions/renderToXml.tsx)).
