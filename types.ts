@@ -16,6 +16,25 @@ export interface Tweet {
 			indices: [number, number];
 		}[];
 	};
+	extended_entities?: {
+		media: Array<{
+			id: 1392225877115605000;
+			id_str: '1392225877115604993';
+			indices: [39, 62];
+			media_url: 'http://pbs.twimg.com/media/E1IuDxSVEAESdf0.jpg';
+			media_url_https: 'https://pbs.twimg.com/media/E1IuDxSVEAESdf0.jpg';
+			url: 'https://t.co/3jmGpl87LW';
+			display_url: 'pic.twitter.com/3jmGpl87LW';
+			expanded_url: 'https://twitter.com/PaymoneyWubby/status/1392225901165694976/photo/1';
+			type: 'photo';
+			sizes: {
+				small: { w: 510; h: 680; resize: 'fit' };
+				thumb: { w: 150; h: 150; resize: 'crop' };
+				medium: { w: 900; h: 1200; resize: 'fit' };
+				large: { w: 1536; h: 2048; resize: 'fit' };
+			};
+		}>;
+	};
 	metadata: {
 		result_type: string;
 		iso_language_code: string;

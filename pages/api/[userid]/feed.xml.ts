@@ -1,3 +1,4 @@
+import fs from 'fs';
 import env from '@rettgerst/env-proxy';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -10,6 +11,14 @@ const {
 	TWITTER_API_SECRET_KEY,
 	TWITTER_BEARER_TOKEN
 } = env.required.string;
+
+function tweetIsReply(tweet: Tweet) {
+	return tweet.in_reply_to_screen_name !== null;
+}
+
+function tweetIsNotReply(tweet: Tweet) {
+	return !tweetIsReply(tweet);
+}
 
 export default async function GetUserTweets(
 	req: NextApiRequest,
@@ -32,12 +41,16 @@ export default async function GetUserTweets(
 
 	const { id } = user;
 
-	const tweets = await t.get('statuses/user_timeline', {
+	const tweets = ((await t.get('statuses/user_timeline', {
 		user_id: id,
 		exclude_replies: true
+	})) as any) as Tweet[];
+
+	fs.writeFileSync('tweets.json', JSON.stringify(tweets), {
+		encoding: 'utf8'
 	});
 
-	const xml = renderToXml(tweets as Tweet[]);
+	const xml = renderToXml(tweets.filter(tweetIsNotReply));
 
 	res.setHeader('content-type', 'application/xml');
 	res.status(200).end(xml);
