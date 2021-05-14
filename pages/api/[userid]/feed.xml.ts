@@ -1,4 +1,3 @@
-import fs from 'fs';
 import env from '@rettgerst/env-proxy';
 import { NextApiRequest, NextApiResponse } from 'next';
 
