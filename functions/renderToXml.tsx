@@ -67,7 +67,6 @@ export default function renderToXml(tweets: Tweet[]) {
 				);
 
 				const descHtml = ReactDomServer.renderToString(desc);
-				const descCdata = `<![CDATA[${descHtml}]]>`;
 
 				return (
 					<Entry>
@@ -77,7 +76,7 @@ export default function renderToXml(tweets: Tweet[]) {
 						</Updated>
 						<Title>{unescapedText}</Title>
 						<Link href={href} />
-						<Content>{descCdata}</Content>
+						<Content type="html">{descHtml}</Content>
 					</Entry>
 				);
 			})}
