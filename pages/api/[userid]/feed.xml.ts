@@ -30,18 +30,8 @@ export default async function GetUserTweets(
 		bearer_token: TWITTER_BEARER_TOKEN
 	});
 
-	const users = await t.get(`users/lookup`, {
-		screen_name: userid
-	});
-
-	if (users.length !== 1) throw new Error(`Found ${users.length} users`);
-
-	const user = users[0];
-
-	const { id } = user;
-
 	const tweets = ((await t.get('statuses/user_timeline', {
-		user_id: id,
+		user_id: userid,
 		exclude_replies: true
 	})) as any) as Tweet[];
 
