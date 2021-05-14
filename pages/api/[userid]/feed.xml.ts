@@ -46,10 +46,6 @@ export default async function GetUserTweets(
 		exclude_replies: true
 	})) as any) as Tweet[];
 
-	fs.writeFileSync('tweets.json', JSON.stringify(tweets), {
-		encoding: 'utf8'
-	});
-
 	const xml = renderToXml(tweets.filter(tweetIsNotReply));
 
 	res.setHeader('content-type', 'application/xml');
