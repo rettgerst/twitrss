@@ -121,9 +121,11 @@ function getTweetMediaTable(tweet: Tweet) {
 }
 
 export default function renderToXml(tweets: Tweet[]) {
+	const user = tweets[0].user;
 	const jsx = (
 		<Rss>
 			<Channel>
+				<Title>{user.name}</Title>
 				{tweets.map(tweet => {
 					const href = `https://twitter.com/${tweet.user.screen_name}/status/${tweet.id_str}`;
 
